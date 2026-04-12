@@ -5,8 +5,10 @@ from make_csv import make_csv
 # Only run the first time to make the CSV file with all the details from the HTML file
 # make_csv("PSMSWeb.html")
 
-st.set_page_config(layout="wide")
-
+st.set_page_config(
+    page_title="PS-I Stations 2026",
+    layout="wide"
+)
 df = pd.read_csv("station_details.csv")
 
 place = st.selectbox("City", [""] + sorted(df["City"].unique()))
