@@ -1,6 +1,6 @@
 import pandas as pd
-from make_csv import make_csv
 import streamlit as st
+from make_csv import make_csv
 
 # Only run the first time to make the CSV file with all the details from the HTML file
 # make_csv("PSMSWeb.html")
