@@ -5,23 +5,25 @@ from make_csv import make_csv
 # Only run the first time to make the CSV file with all the details from the HTML file
 # make_csv("PSMSWeb.html")
 
+df = pd.read_csv("station_details.csv")
+
 st.set_page_config(
     page_title="PS-I Stations 2026",
     layout="wide"
 )
-df = pd.read_csv("station_details.csv")
 
+name = st.text_input("Station Name")
 place = st.selectbox("City", [""] + sorted(df["City"].unique()))
-domain = st.selectbox("Domain", [""] + sorted(df["Domain"].unique()))
+domain = st.selectbox("Business Domain", [""] + sorted(df["Domain"].unique()))
 
-if place and domain:
-    stations = df[df["City"].str.casefold().str.contains(place.casefold()) & df["Domain"].str.casefold().str.contains(domain.casefold())]
-elif place:
-    stations = df[df["City"].str.casefold().str.contains(place.casefold())]
-elif domain:
-    stations = df[df["Domain"].str.casefold().str.contains(domain.casefold())]
-else:
-    stations = df
+stations = df
+
+if name:
+    stations = stations[stations["Station Name"].str.casefold().str.contains(name.casefold())]
+if place:
+    stations = stations[stations["City"].str.casefold().str.contains(place.casefold())]
+if domain:
+    stations = stations[stations["Domain"] == domain]
 
 st.write("Total Stations Found: ", len(stations))
 
