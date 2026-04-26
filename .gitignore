@@ -4,4 +4,6 @@ __pycache__/
 PSMSWeb_files/
 *.html
 
+*.xlsx
+
 old/
