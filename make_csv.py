@@ -10,7 +10,7 @@ def make_csv(url, excel_file, output_csv="station_details.csv"):
     soup = BeautifulSoup(html_content, "lxml")
     df_stations = pd.read_excel(excel_file)
 
-    mapping = dict(zip(df_stations["Station ID"], zip(df_stations["Centre (Location)"], df_stations["Mode (Updated)"])))
+    mapping = dict(zip(df_stations["Station ID"], zip(df_stations["Location (Centre)"], df_stations["Mode (Updated)"])))
 
     table = soup.find("table", class_="table tblcontent tblnocheck")
     table_rows = table.find("tbody").find_all("tr")
